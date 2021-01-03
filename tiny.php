@@ -13,6 +13,9 @@ $url = base64url_decode($cacheID);
 $as = "xml";
 if (isset($_GET["type"]))
     $as = $_GET["type"];
+$maxItems = 10;
+if (isset($_GET["max"]))
+    $maxItems = $_GET["max"];
 
 //Prepare the cache
 $path = "cache";
@@ -31,17 +34,16 @@ if (!file_exists($path)) {
 }
 $rss = simplexml_load_file($path);
 
-$maxItems = 10;
+//Figure out some paths
 $this_path = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 $image_helper_path = str_replace(basename($_SERVER['PHP_SELF']), "image.php", $this_path);
 $mp3_helper_path = str_replace(basename($_SERVER['PHP_SELF']), "mp3.php", $this_path);
 
 if ($as == "json") {    //JSON RESPONSE
 
+    //Build items list from RSS Feed
     $items = $rss->channel->item;
     $channel = $rss->channel;
-
-    //Build items list from RSS Feed
     $i = 0;
     $data = array();
     foreach ($items as $item) { 
@@ -62,13 +64,16 @@ if ($as == "json") {    //JSON RESPONSE
             'duration' => (string) $item->children('itunes', true)->duration,
             
         );
-        if (++$i == $maxItems) break;// change this to the number of elements you want to get
+        if (++$i == $maxItems) break;
     }
-
+    //determine if the tiny client will need help with the images
+    //TODO: Do we need the second (itunes) image?
     $image_url = (string)$channel->image->url;
     if (strpos($image_url, "https:") !== false) {
         $image_url = $image_helper_path . "?" . base64url_encode($image_url);
     }
+
+    //Build the outer structure and add the inner structure of items
     $data_wrapper = array(
         'title' => (string)$channel->title,
         'link' => (string)$channel->link,
@@ -81,17 +86,19 @@ if ($as == "json") {    //JSON RESPONSE
             'title' => (string)$channel->image->title,
             'link' => (string)$channel->image->link
         ),
+        //Inner structure
         'items' => $data
     );
 
+    //Return the result in JSON format
     header('Content-Type: application/json');
     echo json_encode($data_wrapper);
 }
 else {  //XML RESPONSE
 
+    //Simplify remote RSS Feed
     $doc = new DOMDocument; 
-    $doc->loadXML($rss->asXML());
-    
+    $doc->loadXML($rss->asXML());    
     $thedocument = $doc->documentElement;
 
     //determine if the tiny client will need help with the images
@@ -144,6 +151,7 @@ else {  //XML RESPONSE
         }
     }
 
+    //Return the result in XML format
     header('Content-Type: text/xml');        
     echo $doc->saveXML(); 
 }
