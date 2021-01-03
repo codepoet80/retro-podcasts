@@ -39,6 +39,8 @@ if (!file_exists($path)) {
     file_put_contents($path, fopen($url, 'r'));
 }
 
+//TODO: Determine if the image is empty and return something generic instead
+
 //Make image smaller so we don't crush tiny old devices
 resize_img($imgSize, $path, $path);
 
