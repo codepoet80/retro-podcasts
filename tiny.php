@@ -1,12 +1,16 @@
 <?php
 include("common.php");
+/*
+//Only show errors when debugging
 ini_set ('display_errors', 1);  
 ini_set ('display_startup_errors', 1);  
-error_reporting (E_ALL);  
+error_reporting (E_ALL);
+*/
 
 //Extract the query
 if (!isset($_GET["url"])) {
-    header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+    header($_SERVER["SERVER_PROTOCOL"] . " 400 Bad Request");
+    die;
 }
 $cacheID = $_GET["url"];
 $url = base64url_decode($cacheID);
@@ -32,6 +36,8 @@ if (file_exists($path) && time()-filemtime($path) > 24 * 3600) {
 if (!file_exists($path)) {
     file_put_contents($path, fopen($url, 'r'));
 }
+
+//Try to load the remote file
 $rss = simplexml_load_file($path);
 
 //Figure out some paths
@@ -152,8 +158,10 @@ else {  //XML RESPONSE
     }
 
     //Return the result in XML format
-    header('Content-Type: text/xml');        
-    echo $doc->saveXML(); 
+    header('Content-Type: text/xml'); 
+    //Skip any non-document nodes (eg: stylesheets cause problems for webOS)
+    $xml_out = $doc->saveXML($doc->documentElement);       
+    echo $xml_out; 
 }
 
 function removeXMLNodes(&$list)
