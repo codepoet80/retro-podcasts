@@ -5,14 +5,17 @@ ini_set ('display_errors', 1);
 ini_set ('display_startup_errors', 1);  
 error_reporting (E_ALL); 
 
-if (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] != "")
-    $mp3_info = $_SERVER['QUERY_STRING'];
+if (isset($_GET['img']) && $_GET['img'] != "")
+    $img = $_GET['img'];
 else {
     header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
     die;
 }
-$cacheID = $mp3_info;
+$cacheID = $img;
 $url = base64url_decode($cacheID);
+$imgSize = 128;
+if (isset($_GET["size"]))
+    $imgSize = $_GET["size"];
 
 //Prepare the cache
 $path = "cache";
@@ -33,17 +36,18 @@ if (!file_exists($path)) {
 }
 
 //Make image smaller so we don't crush tiny old devices
-resize(128, $path, $path);
+resize_img($imgSize, $path, $path);
 
-$fp = fopen($path, 'r');
 // send the right headers
-header("Content-Type: image/png");
+$info = getimagesize($path);
+header("Content-Type: " . $info['mime']);
 header("Content-Length: " . filesize($path));
 // dump the file and stop the script
+$fp = fopen($path, 'r');
 fpassthru($fp);
-//exit;
+exit;
 
-function resize($newWidth, $targetFile, $originalFile) {
+function resize_img($newWidth, $targetFile, $originalFile) {
 
     $info = getimagesize($originalFile);
     $mime = $info['mime'];

@@ -38,7 +38,7 @@ if (count($app_response["feeds"]) > 0)
 {
     echo("<table cellpadding='5'>");
     foreach($app_response["feeds"] as $app) {
-        echo("<tr><td align='center' valign='top'><img style='width:64px; height:64px' src='". $image_path . "?" . base64url_encode($app["image"]) . "' border='0'>");
+        echo("<tr><td align='center' valign='top'><img style='width:64px; height:64px' src='". $image_path . "?img=" . base64url_encode($app["image"]) . "' border='0'>");
         echo("<td width='100%' style='padding-left: 14px'><b>{$app["title"]}</b><br/>");
         echo("<i>" . $app["description"] . "...</i><br/>");
         echo("<a href='{$app["url"]}' target='_blank'>Full Feed</a> | ");

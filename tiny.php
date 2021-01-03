@@ -70,7 +70,7 @@ if ($as == "json") {    //JSON RESPONSE
     //TODO: Do we need the second (itunes) image?
     $image_url = (string)$channel->image->url;
     if (strpos($image_url, "https:") !== false) {
-        $image_url = $image_helper_path . "?" . base64url_encode($image_url);
+        $image_url = $image_helper_path . "?img=" . base64url_encode($image_url);
     }
 
     //Build the outer structure and add the inner structure of items
@@ -108,7 +108,7 @@ else {  //XML RESPONSE
         $attr = $el->getAttribute('href');
         if (strpos($attr, "https:") !== false)
         {
-            $el->setAttribute('href', $image_helper_path . "?" . base64url_encode($attr));
+            $el->setAttribute('href', $image_helper_path . "?img=" . base64url_encode($attr));
         }
     }
     $list = $thedocument->getElementsByTagName('url');
@@ -117,7 +117,7 @@ else {  //XML RESPONSE
         $image_url = $el->nodeValue;
         if (strpos($image_url, "https:") !== false)
         {
-            $el->nodeValue = $image_helper_path . "?" . base64url_encode($image_url);
+            $el->nodeValue = $image_helper_path . "?img=" . base64url_encode($image_url);
         }
     }
     
