@@ -1,27 +1,30 @@
 <?php
 include ("common.php");
 
-ini_set ('display_errors', 1);  
-ini_set ('display_startup_errors', 1);  
-error_reporting (E_ALL); 
-
-if (isset($_GET['img']) && $_GET['img'] != "")
+//Handle more specific queries
+$img = null;
+$imgSize = 128;
+if (isset($_GET["size"]))
+    $imgSize = $_GET["size"];
+if (isset($_GET['img']) && $_GET['img'] != "") {
     $img = $_GET['img'];
-else {
-    header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+} else { //Accept a blanket query
+    if (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] != "")
+        $img = $_SERVER['QUERY_STRING'];
+}
+if (!isset($img)) {    //Deal with no usable request
+    header($_SERVER["SERVER_PROTOCOL"] . " 400 Bad Request");
     die;
 }
 $cacheID = $img;
 $url = base64url_decode($cacheID);
-$imgSize = 128;
-if (isset($_GET["size"]))
-    $imgSize = $_GET["size"];
 
 //Prepare the cache
 $path = "cache";
 if (!file_exists($path)) {
     mkdir($path, 0755, true);
 }
+
 //Make sure our filename isn't too long
 $fullWritePath = getcwd() . "/" . $path . "/";
 $availLength = 250 - strlen($fullWritePath);
@@ -29,6 +32,7 @@ $startPos = strlen($cacheID) - $availLength;
 if ($startPos < 0)
     $startPos = 0;
 $cacheID = substr($cacheID, $startPos);
+
 //Fetch and cache the file if its not already cached
 $path = $path . "/" . $cacheID . ".png";
 if (!file_exists($path)) {
@@ -47,6 +51,8 @@ $fp = fopen($path, 'r');
 fpassthru($fp);
 exit;
 
+//Function to resize common image formats
+//  Found on https://stackoverflow.com/questions/13596794/resize-images-with-php-support-png-jpg
 function resize_img($newWidth, $targetFile, $originalFile) {
 
     $info = getimagesize($originalFile);
