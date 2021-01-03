@@ -16,7 +16,7 @@ $image_path = str_replace("index.php", "image.php", $action_path);
 
 if ($_GET['search'] != null)
 {
-	$app_path = $search_path . "?". urlencode($_GET['search']);
+    $app_path = $search_path . "?". urlencode($_GET['search']);
 	$app_file = fopen($app_path, "rb");
 	$app_content = stream_get_contents($app_file);
 	fclose($app_file);
