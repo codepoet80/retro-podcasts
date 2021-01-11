@@ -1,9 +1,10 @@
 <?php
 include("common.php");
+
 /*
 //Only show errors when debugging
-ini_set ('display_errors', 1);  
-ini_set ('display_startup_errors', 1);  
+ini_set ('display_errors', 1);
+ini_set ('display_startup_errors', 1);
 error_reporting (E_ALL);
 */
 
@@ -32,7 +33,7 @@ $path = $path . "/" . $cacheID . ".xml";
 if (file_exists($path) && time()-filemtime($path) > 24 * 3600) {
     // file older than 24 hours
     unlink($path);
-}  
+}
 if (!file_exists($path)) {
     file_put_contents($path, fopen($url, 'r'));
 }
@@ -68,7 +69,6 @@ if ($as == "json") {    //JSON RESPONSE
                 'enclosure:type' => (string) $item->enclosure['type']
             ),
             'duration' => (string) $item->children('itunes', true)->duration,
-            
         );
         if (++$i == $maxItems) break;
     }
@@ -103,8 +103,8 @@ if ($as == "json") {    //JSON RESPONSE
 else {  //XML RESPONSE
 
     //Simplify remote RSS Feed
-    $doc = new DOMDocument; 
-    $doc->loadXML($rss->asXML());    
+    $doc = new DOMDocument;
+    $doc->loadXML($rss->asXML());
     $thedocument = $doc->documentElement;
 
     //determine if the tiny client will need help with the images
@@ -126,7 +126,7 @@ else {  //XML RESPONSE
             $el->nodeValue = $image_helper_path . "?img=" . base64url_encode($image_url);
         }
     }
-    
+
     //remove superflous data
     $cleanup = $thedocument->getElementsByTagName('summary');
     $list = removeXMLNodes($cleanup);
@@ -158,10 +158,10 @@ else {  //XML RESPONSE
     }
 
     //Return the result in XML format
-    header('Content-Type: text/xml'); 
+    header('Content-Type: text/xml');
     //Skip any non-document nodes (eg: stylesheets cause problems for webOS)
-    $xml_out = $doc->saveXML($doc->documentElement);       
-    echo $xml_out; 
+    $xml_out = $doc->saveXML($doc->documentElement);
+    echo $xml_out;
 }
 
 function removeXMLNodes(&$list)
