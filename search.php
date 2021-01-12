@@ -1,8 +1,6 @@
 <?php
 /* See https://github.com/Podcastindex-org/example-code for more examples */
-ini_set ('display_errors', 1);
-ini_set ('display_startup_errors', 1);
-error_reporting (E_ALL);
+
 //Figure the query
 $maxResults = 15;
 if (isset($_GET['q'])) {
