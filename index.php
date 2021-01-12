@@ -14,9 +14,12 @@ $search_path = str_replace("index.php", "search.php", $action_path);
 $feed_path = str_replace("index.php", "tiny.php", $action_path);
 $image_path = str_replace("index.php", "image.php", $action_path);
 
+$max=15;
+if (isset($_GET['max']))
+	$max=$_GET['max'];
 if ($_GET['search'] != null)
 {
-    $app_path = $search_path . "?". urlencode($_GET['search']);
+    	$app_path = $search_path . "?max=" . $max ."&q=" . urlencode($_GET['search']);
 	$app_file = fopen($app_path, "rb");
 	$app_content = stream_get_contents($app_file);
 	fclose($app_file);
@@ -32,7 +35,6 @@ if ($_GET['search'] != null)
         <input type="submit" class="search-button" value="Search">
         </div>
     </form>
-
 <?php
 if (count($app_response["feeds"]) > 0)
 {
@@ -48,5 +50,7 @@ if (count($app_response["feeds"]) > 0)
     echo("</table>");
 }
 ?>
+    <p align='middle'><small>Search Provided by <a href='https://podcastindex.org/'>Podcast Index.org</a></small></p>
+
 </body>
 </html>
