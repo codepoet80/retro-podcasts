@@ -1,6 +1,15 @@
 <html>
 <head>
+<link rel="shortcut icon" sizes="256x256" href="icon-256.png">
+<link rel="shortcut icon" sizes="196x196" href="icon-196.png">
+<link rel="shortcut icon" sizes="128x128" href="icon-128.png">
 <link rel="shortcut icon" href="favicon.ico">
+<link rel="icon"type="image/png" href="icon.png" >
+<link rel="apple-touch-icon" href="icon.png"/>
+<link rel="apple-touch-startup-image" href="icon-256.png">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1" />
 <title>webOS Podcast Directory</title>
