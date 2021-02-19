@@ -59,8 +59,7 @@ if (count($app_response["feeds"]) > 0)
     echo("</table>");
 }
 ?>
-    <br>&nbsp;
-    <p align='middle'><small>Search Provided by <a href='https://podcastindex.org/'>Podcast Index.org</a> | Download the <a href='http://appcatalog.webosarchive.com/showMuseum.php?search=podcast+directory'>webOS App</a></small></p>
+    <p align='middle' style="margin-top: 12px"><small>Search Provided by <a href='https://podcastindex.org/'>Podcast Index.org</a> | <a href="https://github.com/codepoet80/retro-podcasts">Host this yourself</a> | Download the <a href='http://appcatalog.webosarchive.com/showMuseum.php?search=podcast+directory'>webOS App</a></small></p>
 
 </body>
 </html>
