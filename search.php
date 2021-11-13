@@ -38,6 +38,20 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 header('Content-Type: application/json');
 $response = curl_exec ($ch);
 curl_close ($ch);
+
+include ("substitutions.php");
+if (isset($substitutions)) {
+	$response_obj = json_decode($response);
+	foreach ($response_obj->feeds AS $feed){
+		if (isset($substitutions[$feed->url])) {
+			$new_feed = $substitutions[$feed->url];
+			foreach ($new_feed as $key => $value) {
+				$feed->$key = $value;
+			}
+		}
+	}
+	$response = json_encode($response_obj);
+} 	
 print_r($response);
 
 ?>

@@ -52,6 +52,9 @@ if (count($app_response["feeds"]) > 0)
         echo("<tr><td align='center' valign='top'><img style='width:64px; height:64px' src='". $image_path . "?img=" . base64url_encode($app["image"]) . "' border='0'>");
         echo("<td width='100%' style='padding-left: 14px'><b>{$app["title"]}</b><br/>");
         echo("<i>" . $app["description"] . "...</i><br/>");
+        if (isset($app["substitution_reason"])) {
+            echo "<small>Note: " . $app["substitution_reason"] . "</small><br>";
+        }
         echo("<a href='{$app["url"]}' target='_blank'>Full Feed</a> | ");
         echo("<a href='" . $feed_path . "?url=" . base64url_encode($app["url"]) . "' target='_blank'>Tiny Feed</a>");
         echo("</td></tr>");
