@@ -22,13 +22,14 @@ $action_path = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 $search_path = str_replace("index.php", "search.php", $action_path);
 $feed_path = str_replace("index.php", "tiny.php", $action_path);
 $image_path = str_replace("index.php", "image.php", $action_path);
+$detail_path = str_replace("index.php", "detail.php", $action_path);
 
 $max=15;
 if (isset($_GET['max']))
 	$max=$_GET['max'];
 if ($_GET['search'] != null)
 {
-    	$app_path = $search_path . "?max=" . $max ."&q=" . urlencode($_GET['search']);
+    $app_path = $search_path . "?max=" . $max ."&q=" . urlencode($_GET['search']);
 	$app_file = fopen($app_path, "rb");
 	$app_content = stream_get_contents($app_file);
 	fclose($app_file);
@@ -56,7 +57,8 @@ if (count($app_response["feeds"]) > 0)
             echo "<small>Note: " . $app["substitution_reason"] . "</small><br>";
         }
         echo("<a href='{$app["url"]}' target='_blank'>Full Feed</a> | ");
-        echo("<a href='" . $feed_path . "?url=" . base64url_encode($app["url"]) . "' target='_blank'>Tiny Feed</a>");
+        echo("<a href='" . $feed_path . "?url=" . base64url_encode($app["url"]) . "' target='_blank'>Tiny Feed</a> | ");
+        echo("<a href='" . $detail_path . "?id=" . $app["id"] . "'>More Details</a>");
         echo("</td></tr>");
     }
     echo("</table>");
