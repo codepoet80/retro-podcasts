@@ -5,7 +5,7 @@ include ("common.php");
 
 //Figure the query
 if (isset($_GET['url'])) {
-	$url = $_GET['url'];
+	$url = urldecode($_GET['url']);
 	if (strpos($url, "tiny.php?url=") !== false) {
 		$urlparts = explode("tiny.php?url=", $url);
 		if (isset($urlparts[1])) {
