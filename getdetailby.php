@@ -1,11 +1,24 @@
 <?php
 /* See https://github.com/Podcastindex-org/example-code for more examples */
 
-//Figure the query
+include ("common.php");
 
+//Figure the query
 if (isset($_GET['url'])) {
-	$the_query = "byfeedurl?url=" . $_GET['url'];
+	$url = $_GET['url'];
+	if (strpos($url, "tiny.php?url=") !== false) {
+		$urlparts = explode("tiny.php?url=", $url);
+		if (isset($urlparts[1])) {
+			$url = $urlparts[1];
+			$url = explode("&", $url);
+			$url = $url[0];
+			$url = base64url_decode($url);
+		}
+		//http://podcasts.webosarchive.com/tiny.php?url=aHR0cHM6Ly9mZWVkcy5tZWdhcGhvbmUuZm0vc3R1ZmZ5b3VzaG91bGRrbm93&max=25
+	}
+	$the_query = "byfeedurl?url=" . $url;
 } 
+
 if (isset($_GET['id'])) {
 	$the_query = "byfeedid?id=" . $_GET['id'];
 }

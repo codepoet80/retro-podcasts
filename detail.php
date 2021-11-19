@@ -20,8 +20,8 @@ include ("common.php");
 
 $action_path = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 $search_path = str_replace("detail.php", "getdetailby.php", $action_path);
-$feed_path = str_replace("index.php", "tiny.php", $action_path);
-$image_path = str_replace("index.php", "image.php", $action_path);
+$feed_path = str_replace("detail.php", "tiny.php", $action_path);
+$image_path = str_replace("detail.php", "image.php", $action_path);
 
 if (isset($_SERVER['QUERY_STRING']))
 {
@@ -32,8 +32,12 @@ if (isset($_SERVER['QUERY_STRING']))
 	$app_response = json_decode($app_content, true);
 }
 
+$back_path = $_SERVER['HTTP_REFERER'];
+if (strpos($back_path, "?search=") === false) {
+    $back_path = "index.php";
+}
 ?>
-<small>&lt; <a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">Back to Search</a></small>
+<small>&lt; <a href="<?php echo $back_path ?>">Back to Search</a></small>
 <?php
 if (isset($app_response["feed"]))
 {
