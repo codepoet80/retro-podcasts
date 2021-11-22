@@ -57,8 +57,8 @@ if (isset($app_response["feed"]))
         }
     }
     echo "<li><b>Website:</b> <a href='" . $feed['link'] . "'>" . $feed['link'] . "</a></li>";
-    echo("<li><b>Subscribe: </b><a href='{$feed["url"]}' target='_blank'>Full Feed</a> | ");
-    echo("<a href='$feed_path?url=" . base64url_encode($feed["url"]) . "' target='_blank'>Tiny Feed</a></li>");
+    echo("<li><b>Subscribe: </b><a href='{$feed["url"]}' target='_blank'><img src='rss-16.png' style='vertical-align: top;'> Full Feed</a> | ");
+    echo("<a href='$feed_path?url=" . base64url_encode($feed["url"]) . "' target='_blank'><img src='rss-16.png' style='vertical-align: top;'> Tiny Feed</a></li>");
     if (isset($feed['substitution_reason'])) {
         echo "<li><small><b>Notes:</b> " . $feed['substitution_reason'] . "</small></li>";
     }
@@ -66,7 +66,9 @@ if (isset($app_response["feed"]))
     echo "<!--" . json_encode($feed) . "-->";
 }
 ?>
-    <p align='middle' style="margin-top: 38px"><small>Search Provided by <a href='https://podcastindex.org/'>Podcast Index.org</a> | <a href="https://github.com/codepoet80/retro-podcasts">Host this yourself</a> | <a href='http://appcatalog.webosarchive.com/showMuseum.php?search=podcast+directory'>Download the webOS App</a></small></p>
+<?php include ("help.html")?>
+
+<p align='middle' style="margin-top: 38px"><small>Search Provided by <a href='https://podcastindex.org/'>Podcast Index.org</a> | <a href="https://github.com/codepoet80/retro-podcasts">Host this yourself</a> | <a href='http://appcatalog.webosarchive.com/showMuseum.php?search=podcast+directory'>Download the webOS App</a></small></p>
 
 </body>
 </html>

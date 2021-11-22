@@ -1,0 +1,43 @@
+<div class="help">
+<h1><a href="javascript:toggleHelp()">Help with Feeds</a></h1>
+    <span id="helpDetail">
+    Most Podcast apps let you import a Feed directly. If you're on a modern device, use the Full Feed.<br>
+    If you're on an older device that can't handle large feeds, or modern HTTPS, use the Tiny Feed.
+
+    <h2>Apple Podcasts - Mac</h2>
+    <li>Right click and copy the Full Feed link above
+    <li>Launch Podcasts
+    <li>Click on Library
+    <li>Click on the three dots (upper right)
+    <li>Select Add a Show by URL...
+    <li>Paste the link and click Follow 
+
+    <h2>Google Podcasts - Android</h2>
+    <li>Press and hold on the Full Feed link above, and choose "Copy link address"
+    <li>Launch Google Podcasts</li>
+    <li>Tap on Library</li>
+    <li>Click on the "Link+"" icon at the top</li>
+    <li>Paste the Link you copied above</li>
+    <li>Click Subscribe</li>
+
+    <h2>drPodder - webOS</h2>
+    <li>Use the integrated Directory in <a href="http://www.drpodder.com">drPodder Redux</a><br>
+        OR
+    <li>Launch drPodder</li>
+    <li>Tap the "+" button at the bottom left</li>
+    <li>Tap "Add Feed URL"</li>
+    <li>Paste the Link you copied above</li>
+    <li>Tap the back button (or use the back gesture)</li>
+    </div>
+</span>
+
+<script>
+    var helpSpan = document.getElementById("helpDetail");
+    helpSpan.style.display = "none";
+    function toggleHelp() {
+        if (helpSpan.style.display=="block")
+            helpSpan.style.display = "none";
+        else
+            helpSpan.style.display = "block";
+    }
+</script>

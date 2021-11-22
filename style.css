@@ -1,8 +1,24 @@
 body,
 table,
 tr,
+
 td {
     font-family: Sans-Serif, 'Arial Narrow', 'Franklin Gothic Medium', Arial;
 }
 td { padding-bottom: 12px; }
 small { color:gray;line-height: 1.8; }
+a { color:blue; text-decoration: none; }
+a:hover { color: #ea7819; }
+.help {
+    border-top: 1px solid dimgray;
+    font-size: 12px;
+}
+.help h1 {
+    font-size: 16px;
+    font-weight: bold;
+}
+.help h2 {
+    font-size: 13px;
+    font-weight: bold;
+    color: dimgray
+}
