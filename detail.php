@@ -15,6 +15,8 @@
 <title>webOS Podcast Directory - Podcast Detail</title>
 </head>
 <body onload="document.getElementById('txtSearch').focus()">
+<?php include ("menu.php"); ?>
+<div class="content">
 <?php
 include ("common.php");
 
@@ -69,6 +71,6 @@ if (isset($app_response["feed"]))
 <?php include ("help.html")?>
 
 <p align='middle' style="margin-top: 38px"><small>Search Provided by <a href='https://podcastindex.org/'>Podcast Index.org</a> | <a href="https://github.com/codepoet80/retro-podcasts">Host this yourself</a> | <a href='http://appcatalog.webosarchive.com/showMuseum.php?search=podcast+directory'>Download the webOS App</a></small></p>
-
+</div>
 </body>
 </html>

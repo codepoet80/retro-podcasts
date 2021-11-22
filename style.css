@@ -1,11 +1,11 @@
 body,
 table,
 tr,
-
 td {
     font-family: Sans-Serif, 'Arial Narrow', 'Franklin Gothic Medium', Arial;
 }
 td { padding-bottom: 12px; }
+.content { margin: 8px; }
 small { color:gray;line-height: 1.8; }
 a { color:blue; text-decoration: none; }
 a:hover { color: #ea7819; }
