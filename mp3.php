@@ -2,11 +2,9 @@
 include ("common.php");
 
 //Determine setting for returning file path
+$hideFilepath = false;
 include ("secrets.php");
-$obscure_filepath = false;
-if (isset($filePath) && $filePath == true) {
-	$obscure_filepath = true;
-}
+die("obscure " . $hideFilepath);
 
 //Handle more specific queries
 $mp3_info = null;
@@ -51,7 +49,7 @@ if (!file_exists($path)) {
 	fclose($fh);
 }
 
-if ($obscure_filepath) {
+if ($hideFilepath) {
 	// send the right headers
 	header("Content-Type: audio/mpeg3");
 	header("Content-Length: " . filesize($path));
