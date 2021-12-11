@@ -60,13 +60,11 @@ if ($hideFilepath) {
 	}
 
 	// send the right headers
-	//header("Content-Type: audio/mpeg3");
-	//header("Content-Length: " . filesize($path));
+	header("Content-Type: audio/mpeg3");
+	header("Content-Length: " . filesize($path));
 	if ($useXSendFile) {
-		die ("using x-sendfile on " . $path);
 		header('X-Sendfile: ' . $path);
 	} else {
-		die ("not using x-sendfile on " . $path);
 		// dump the file and stop the script
 		$fp = fopen($path, 'r');
 		fpassthru($fp);
