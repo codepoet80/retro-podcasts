@@ -18,4 +18,4 @@ Get your API credentials here: https://api.podcastindex.org/signup
 
 * x-sendfile
 
-**Note** If you have x-sendfile installed, you must allow it for the cache folder: https://codeutopia.net/blog/2009/03/06/sending-files-better-apache-mod_xsendfile-and-php/
+**Note:** If you have x-sendfile installed, you must allow it for the cache folder, or downloads will not work. See https://codeutopia.net/blog/2009/03/06/sending-files-better-apache-mod_xsendfile-and-php/
