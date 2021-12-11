@@ -4,7 +4,6 @@ include ("common.php");
 //Determine setting for returning file path
 $hideFilepath = false;
 include ("secrets.php");
-die("obscure " . $hideFilepath);
 
 //Handle more specific queries
 $mp3_info = null;
