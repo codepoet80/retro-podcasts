@@ -2,7 +2,7 @@
 include ("common.php");
 
 //Determine setting for returning file path
-$hideFilepath = false;
+$hideFilepath = true;
 include ("secrets.php");
 
 //Handle more specific queries
@@ -47,18 +47,41 @@ if (!file_exists($path)) {
 	curl_close($ch);
 	fclose($fh);
 }
-
+echo ("hideFilePath: " . $hideFilepath);
 if ($hideFilepath) {
-	// send the right headers
-	header("Content-Type: audio/mpeg3");
-	header("Content-Length: " . filesize($path));
+	$useXSendFile = false;
+	try {
+		// try to find xsendfile, which is more efficient
+		if (in_array('mod_xsendfile', apache_get_modules())) {
+			$useXSendFile = true;
+		}
+	} catch (Exception $ex) {
+		//guess we couldn't find it
+	}
 
-	// dump the file and stop the script
-	$fp = fopen($path, 'r');
-	fpassthru($fp);
-	exit;
+	// send the right headers
+	//header("Content-Type: audio/mpeg3");
+	//header("Content-Length: " . filesize($path));
+	if ($useXSendFile) {
+		die ("using x-sendfile on " . $path);
+		header('X-Sendfile: ' . $path);
+	} else {
+		die ("not using x-sendfile on " . $path);
+		// dump the file and stop the script
+		$fp = fopen($path, 'r');
+		fpassthru($fp);
+		exit;
+	}
 } else {
-	header("Location: /cache/" . $cacheID . ".mp3");
+	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+        $link = "https";
+    else $link = "http";
+    $link .= "://";
+    $link .= $_SERVER['HTTP_HOST'];
+    $link .= $_SERVER['REQUEST_URI'];
+	$link = str_replace("mp3.php?", "cache/", $link);
+	$link .= $cacheID . ".mp3";
+	header("Location: " . $link);
 }
 
 ?>
