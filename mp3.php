@@ -1,6 +1,13 @@
 <?php
 include ("common.php");
 
+//Determine setting for returning file path
+include ("secrets.php");
+$obscure_filepath = false;
+if (isset($filePath) && $filePath == true) {
+	$obscure_filepath = true;
+}
+
 //Handle more specific queries
 $mp3_info = null;
 if (isset($_GET['url']) && $_GET['url'] != "") {
@@ -44,13 +51,17 @@ if (!file_exists($path)) {
 	fclose($fh);
 }
 
-// send the right headers
-header("Content-Type: audio/mpeg3");
-header("Content-Length: " . filesize($path));
+if ($obscure_filepath) {
+	// send the right headers
+	header("Content-Type: audio/mpeg3");
+	header("Content-Length: " . filesize($path));
 
-// dump the file and stop the script
-$fp = fopen($path, 'r');
-fpassthru($fp);
-exit;
+	// dump the file and stop the script
+	$fp = fopen($path, 'r');
+	fpassthru($fp);
+	exit;
+} else {
+	header("Location: /cache/" . $cacheID . ".mp3");
+}
 
 ?>
