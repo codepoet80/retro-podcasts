@@ -13,3 +13,9 @@ Get your API credentials here: https://api.podcastindex.org/signup
 * Apache (or other web server) with PHP 7
 * sudo apt get php-xml
 * sudo apt get php-gd
+
+# Optional Prerequisites
+
+* x-sendfile
+
+**Note** If you have x-sendfile installed, you must allow it for the cache folder: https://codeutopia.net/blog/2009/03/06/sending-files-better-apache-mod_xsendfile-and-php/
