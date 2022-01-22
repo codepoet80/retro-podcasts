@@ -7,8 +7,8 @@ td {
 td { padding-bottom: 12px; }
 .content { margin: 8px; }
 small { color:gray;line-height: 1.8; }
-a { color:blue; text-decoration: none; }
-a:hover { color: #ea7819; }
+a { color:#cc5e05; text-decoration: none; }
+a:hover { color: #dd7622; }
 .help {
     border-top: 1px solid dimgray;
     font-size: 12px;

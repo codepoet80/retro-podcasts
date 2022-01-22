@@ -39,7 +39,7 @@ if (isset($_GET['search']) && $_GET['search'] != null)
 }
 
 ?>
-    <p align='middle' style='margin-top:50px;'><a href="/"><img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a><br>
+    <p align='middle' style='margin-top:50px;'><a href="./"><img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a><br>
     <strong>Retro Podcast Directory</strong><br/>
     <small>A project of <a href="http://www.webosarchive.com">webOSArchive.com</a></small><br>
     <br/>
