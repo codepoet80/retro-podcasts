@@ -50,7 +50,7 @@ if (isset($_GET['search']) && $_GET['search'] != null)
 ?>
     <p align='middle' style='margin-top:50px;'><a href="./"><img src='assets/icon-128.png' style="width:128px; height: 128px;" border="0"></a><br>
     <strong>Retro Podcast Directory</strong><br/>
-    <small>A project of <a href="http://www.webosarchive.com">webOSArchive.com</a></small><br>
+    <small>A project of <a href="<?php echo $REQUEST_PROTOCOL ?>://www.webosarchive.com">webOSArchive.com</a></small><br>
     <br/>
     </p>
     <p align='middle' style='margin-bottom:14px;'><i>Search for podcasts by title</i></p>
@@ -79,7 +79,7 @@ if (isset($app_response) && count($app_response["feeds"]) > 0)
     echo("</table>");
 }
 ?>
-    <p align='middle' style="margin-top: 28px"><small>Search Provided by <a href='https://podcastindex.org/'>Podcast Index.org</a> | <a href="https://github.com/codepoet80/retro-podcasts">Host this yourself</a> | <a href='http://appcatalog.webosarchive.com/app/podcastdirectory'>Download the webOS App</a></small></p>
+    <p align='middle' style="margin-top: 28px"><small>Search Provided by <a href='https://podcastindex.org/'>Podcast Index.org</a> | <a href="https://github.com/codepoet80/retro-podcasts">Host this yourself</a> | <a href='$REQUEST_PROTOCOL://appcatalog.webosarchive.com/app/podcastdirectory'>Download the webOS App</a></small></p>
 </div>
 </body>
 </html>
