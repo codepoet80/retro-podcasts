@@ -1,12 +1,12 @@
 <html>
 <head>
-<link rel="shortcut icon" sizes="256x256" href="icons/icon-256.png">
-<link rel="shortcut icon" sizes="196x196" href="icons/icon-196.png">
-<link rel="shortcut icon" sizes="128x128" href="icons/icon-128.png">
+<link rel="shortcut icon" sizes="256x256" href="assets/icon-256.png">
+<link rel="shortcut icon" sizes="196x196" href="assets/icon-196.png">
+<link rel="shortcut icon" sizes="128x128" href="assets/icon-128.png">
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" type="image/png" href="icons/icon.png" >
-<link rel="apple-touch-icon" href="icons/icon.png"/>
-<link rel="apple-touch-startup-image" href="icons/icon-256.png">
+<link rel="icon" type="image/png" href="assets/icon.png" >
+<link rel="apple-touch-icon" href="assets/icon.png"/>
+<link rel="apple-touch-startup-image" href="assets/icon-256.png">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 
@@ -59,8 +59,8 @@ if (isset($app_response["feed"]))
         }
     }
     echo "<li><b>Website:</b> <a href='" . $feed['link'] . "'>" . $feed['link'] . "</a></li>";
-    echo("<li><b>Subscribe: </b><a href='{$feed["url"]}' target='_blank'><img src='icons/rss-16.png' style='vertical-align: top;'> Full Feed</a> | ");
-    echo("<a href='$feed_path?url=" . base64url_encode($feed["url"]) . "' target='_blank'><img src='icons/rss-16.png' style='vertical-align: top;'> Tiny Feed</a></li>");
+    echo("<li><b>Subscribe: </b><a href='{$feed["url"]}' target='_blank'><img src='assets/rss-16.png' style='vertical-align: top;'> Full Feed</a> | ");
+    echo("<a href='$feed_path?url=" . base64url_encode($feed["url"]) . "' target='_blank'><img src='assets/rss-16.png' style='vertical-align: top;'> Tiny Feed</a></li>");
     if (isset($feed['substitution_reason'])) {
         echo "<li><small><b>Notes:</b> " . $feed['substitution_reason'] . "</small></li>";
     }

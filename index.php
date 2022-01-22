@@ -1,12 +1,12 @@
 <html>
 <head>
-<link rel="shortcut icon" sizes="256x256" href="icons/icon-256.png">
-<link rel="shortcut icon" sizes="196x196" href="icons/icon-196.png">
-<link rel="shortcut icon" sizes="128x128" href="icons/icon-128.png">
+<link rel="shortcut icon" sizes="256x256" href="assets/icon-256.png">
+<link rel="shortcut icon" sizes="196x196" href="assets/icon-196.png">
+<link rel="shortcut icon" sizes="128x128" href="assets/icon-128.png">
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" type="image/png" href="icons/icon.png" >
-<link rel="apple-touch-icon" href="icons/icon.png"/>
-<link rel="apple-touch-startup-image" href="icons/icon-256.png">
+<link rel="icon" type="image/png" href="assets/icon.png" >
+<link rel="apple-touch-icon" href="assets/icon.png"/>
+<link rel="apple-touch-startup-image" href="assets/icon-256.png">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 
@@ -39,7 +39,7 @@ if (isset($_GET['search']) && $_GET['search'] != null)
 }
 
 ?>
-    <p align='middle' style='margin-top:50px;'><a href="./"><img src='icons/icon-128.png' style="width:128px; height: 128px;" border="0"></a><br>
+    <p align='middle' style='margin-top:50px;'><a href="./"><img src='assets/icon-128.png' style="width:128px; height: 128px;" border="0"></a><br>
     <strong>Retro Podcast Directory</strong><br/>
     <small>A project of <a href="http://www.webosarchive.com">webOSArchive.com</a></small><br>
     <br/>
@@ -56,14 +56,14 @@ if (isset($app_response) && count($app_response["feeds"]) > 0)
 {
     echo("<table cellpadding='5'>");
     foreach($app_response["feeds"] as $app) {
-        echo("<tr><td align='center' valign='top'><img style='width:64px; height:64px; border-radius: 2%; -webkit-border-radius:5px;' src='". $image_path . "?img=" . base64url_encode($app["image"]) . "' border='0' onerror='this.onerror=null; this.src=\"icons/icon-minimal.png\"' >");
+        echo("<tr><td align='center' valign='top'><img style='width:64px; height:64px; border-radius: 2%; -webkit-border-radius:5px;' src='". $image_path . "?img=" . base64url_encode($app["image"]) . "' border='0' onerror='this.onerror=null; this.src=\"assets/icon-minimal.png\"' >");
         echo("<td width='100%' style='padding-left: 14px'><b>{$app["title"]}</b><br/>");
         echo("<i>" . $app["description"] . "...</i><br/>");
         if (isset($app["substitution_reason"])) {
             echo "<small>Note: " . $app["substitution_reason"] . "</small><br>";
         }
-        echo("<a href='{$app["url"]}' target='_blank'><img src='icons/rss-16.png'> Full Feed</a> | ");
-        echo("<a href='" . $feed_path . "?url=" . base64url_encode($app["url"]) . "' target='_blank'><img src='icons/rss-16.png'> Tiny Feed</a> | ");
+        echo("<a href='{$app["url"]}' target='_blank'><img src='assets/rss-16.png'> Full Feed</a> | ");
+        echo("<a href='" . $feed_path . "?url=" . base64url_encode($app["url"]) . "' target='_blank'><img src='assets/rss-16.png'> Tiny Feed</a> | ");
         echo("<a href='" . $detail_path . "?id=" . $app["id"] . "'>More Details</a>");
         echo("</td></tr>");
     }
