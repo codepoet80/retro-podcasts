@@ -1,9 +1,9 @@
 <?php
 //Figure out what protocol the client wanted
 if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-$protocol = "https://";
+echo file_get_contents("https://www.webosarchive.com/menu.php?content=podcasts");
 else
-$protocol = "http://";
+echo file_get_contents("http://www.webosarchive.com/menu.php?content=podcasts");
 
-echo file_get_contents($protocol . "://www.webosarchive.com/menu.php?content=podcasts");
+
 ?>
