@@ -29,7 +29,7 @@ $detail_path = str_replace("index.php", "detail.php", $action_path);
 $max=15;
 if (isset($_GET['max']))
 	$max=$_GET['max'];
-if (isset($_GET['max']) && $_GET['search'] != null)
+if (isset($_GET['search']) && $_GET['search'] != null)
 {
     $app_path = $search_path . "?max=" . $max ."&q=" . urlencode($_GET['search']);
 	$app_file = fopen($app_path, "rb");
@@ -39,7 +39,11 @@ if (isset($_GET['max']) && $_GET['search'] != null)
 }
 
 ?>
-    <p align='middle' style='margin-top:50px;'><a href="/"><img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a></p>
+    <p align='middle' style='margin-top:50px;'><a href="/"><img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a><br>
+    <strong>Retro Podcast Directory</strong><br/>
+    <small>A project of <a href="http://www.webosarchive.com">webOSArchive.com</a></small><br>
+    <br/>
+    </p>
     <p align='middle' style='margin-bottom:30px;'><i>Search for podcasts by title</i></p>
     <form action="<?php echo $action_path; ?>" method="get">
         <div style="margin-left:auto;margin-right:auto;text-align:center;">
