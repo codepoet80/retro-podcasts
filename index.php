@@ -54,7 +54,7 @@ if (isset($_GET['search']) && $_GET['search'] != null)
     <br/>
     </p>
     <p align='middle' style='margin-bottom:14px;'><i>Search for podcasts by title</i></p>
-    <form action="<?php echo $action_path; ?>" method="get">
+    <form method="get">
         <div style="margin-left:auto;margin-right:auto;text-align:center;">
         <input type="text" id="txtSearch" name="search" class="search" placeholder="Just type...">
         <input type="submit" class="search-button" value="Search">
