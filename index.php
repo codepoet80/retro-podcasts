@@ -20,7 +20,16 @@
 <?php
 include ("common.php");
 
-$action_path = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+$isSecure = false;
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+    $isSecure = true;
+}
+elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+    $isSecure = true;
+}
+$REQUEST_PROTOCOL = $isSecure ? 'https' : 'http';
+
+$action_path = $REQUEST_PROTOCOL . '://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 $search_path = str_replace("index.php", "search.php", $action_path);
 $feed_path = str_replace("index.php", "tiny.php", $action_path);
 $image_path = str_replace("index.php", "image.php", $action_path);
