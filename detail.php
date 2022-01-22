@@ -45,7 +45,7 @@ if (isset($app_response["feed"]))
 {
     $feed = $app_response["feed"];
     //echo $feedimage;
-    echo "<p align='middle' style='margin-top:30px;'><img src='" . $feed['image'] . "' style='width:128px; height: 128px;border-radius: 3%; -webkit-border-radius:6px;' border='0'></p>";
+    echo "<p align='middle' style='margin-top:30px;'><img src='" . $feed['image'] . "' style='width:128px; height: 128px;border-radius: 3%; -webkit-border-radius:6px;' border='0' onerror='this.onerror=null; this.src=\"assets/icon-minimal.png\"' ></p>";
     echo "<p align='middle' style='margin-top:12px;margin-bottom:32px;'><b>" . $feed['title'] . "</b></p>";
     echo $feed['description'];
 
