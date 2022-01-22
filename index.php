@@ -29,7 +29,7 @@ $detail_path = str_replace("index.php", "detail.php", $action_path);
 $max=15;
 if (isset($_GET['max']))
 	$max=$_GET['max'];
-if ($_GET['search'] != null)
+if (isset($_GET['max']) && $_GET['search'] != null)
 {
     $app_path = $search_path . "?max=" . $max ."&q=" . urlencode($_GET['search']);
 	$app_file = fopen($app_path, "rb");
@@ -48,7 +48,7 @@ if ($_GET['search'] != null)
         </div>
     </form>
 <?php
-if (count($app_response["feeds"]) > 0)
+if (isset($app_response) && count($app_response["feeds"]) > 0)
 {
     echo("<table cellpadding='5'>");
     foreach($app_response["feeds"] as $app) {
