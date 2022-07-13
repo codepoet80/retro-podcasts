@@ -12,9 +12,10 @@ Create a writable folder (or symlink) called `cache` for the service to write to
 
 # Prerequisites
 
-* Apache (or other web server) with PHP 7
+* Apache, Nginx (possibly other web servers) with PHP 7
 * sudo apt install php-xml
 * sudo apt install php-gd
+* sudo apt install php-curl
 
 # Optional Prerequisites
 
