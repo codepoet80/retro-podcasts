@@ -11,8 +11,8 @@ Get your API credentials here: https://api.podcastindex.org/signup
 # Prerequisites
 
 * Apache (or other web server) with PHP 7
-* sudo apt get php-xml
-* sudo apt get php-gd
+* sudo apt install php-xml
+* sudo apt install php-gd
 
 # Optional Prerequisites
 
