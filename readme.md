@@ -8,6 +8,8 @@ Provide your PodcastIndex API key and secret in a file called secrets.php
 
 Get your API credentials here: https://api.podcastindex.org/signup
 
+Create a writable folder (or symlink) called `cache` for the service to write to
+
 # Prerequisites
 
 * Apache (or other web server) with PHP 7
