@@ -47,16 +47,17 @@ if (!file_exists($path)) {
 	curl_close($ch);
 	fclose($fh);
 }
-echo ("hideFilePath: " . $hideFilepath);
 if ($hideFilepath) {
 	$useXSendFile = false;
-	try {
-		// try to find xsendfile, which is more efficient
-		if (in_array('mod_xsendfile', apache_get_modules())) {
-			$useXSendFile = true;
+	if (function_exists('apache_get_modules')) {
+		try {
+			// try to find xsendfile, which is more efficient
+			if (in_array('mod_xsendfile', apache_get_modules())) {
+				$useXSendFile = true;
+			}
+		} catch (Exception $ex) {
+			//guess we couldn't find it
 		}
-	} catch (Exception $ex) {
-		//guess we couldn't find it
 	}
 
 	// send the right headers
