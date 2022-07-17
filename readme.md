@@ -17,8 +17,9 @@ Create a writable folder (or symlink) called `cache` for the service to write to
 * sudo apt install php-gd
 * sudo apt install php-curl
 
-# Optional Prerequisites
+# Optional Prerequisites (if enabled in secrets.php)
 
-* x-sendfile
+* x-accel-redirect (Nginx)
+* x-sendfile (Apache2)
 
-**Note:** If you have x-sendfile installed, you must allow it for the cache folder, or downloads will not work. See https://codeutopia.net/blog/2009/03/06/sending-files-better-apache-mod_xsendfile-and-php/
+**Note:** If you have x-sendfile installed, you must allow it access to the cache folder, or downloads will not work. See https://codeutopia.net/blog/2009/03/06/sending-files-better-apache-mod_xsendfile-and-php/
