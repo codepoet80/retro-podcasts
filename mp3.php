@@ -51,12 +51,12 @@ if ($hideFilepath) {
 	$useXSendFile = false;
 	if (function_exists('apache_get_modules')) {
 		try {
-			// try to find xsendfile, which is more efficient
+			// try to find apache xsendfile
 			if (in_array('mod_xsendfile', apache_get_modules())) {
 				$useXSendFile = true;
 			}
 		} catch (Exception $ex) {
-			//guess we couldn't find it
+			//Assuming nginx, per readme
 		}
 	}
 
@@ -65,16 +65,22 @@ if ($hideFilepath) {
 	header("Content-Length: " . filesize($path));
 	if ($useXSendFile) {
 		header('X-Sendfile: ' . $path);
+		exit;
 	} else {
-		// dump the file and stop the script
-		$fp = fopen($path, 'r');
-		fpassthru($fp);
+		header("X-Accel-Redirect: /" . $path);
 		exit;
 	}
+	/* This strategy could potentially work on other web servers, but most retro devices don't like it...
+	// dump the file and stop the script
+	$fp = fopen($path, 'r');
+	fpassthru($fp);
+	exit;
+	*/
 } else {
-	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
         $link = "https";
-    else $link = "http";
+    else 
+	$link = "http";
     $link .= "://";
     $link .= $_SERVER['HTTP_HOST'];
     $link .= $_SERVER['REQUEST_URI'];
