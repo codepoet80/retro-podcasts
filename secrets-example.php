@@ -2,5 +2,8 @@
 //Get your own API credentials here: https://api.podcastindex.org/signup
 $apiKey = "YOURAPIKEY";    //PodcastIndex API Key
 $apiSecret = "YOURAPISECRET";    //PodcastIndex API Secret
-$hideFilePath = true;   //Leave true for older clients. When true, the path to the final MP3 will be obscured and no redirect will be used. If false, a redirect will be used, so you must expose the cache folder
+//Uses server redirect capabilities to hide the actual file path of the MP3.
+//  Leave true for older clients that can't handle redirects (server must support Apache X-Sendfile or X-Accel-Redirect)
+//  If false, an http redirect will be used, so you must expose the cache folder
+$hideFilePath = false; 
 ?>
