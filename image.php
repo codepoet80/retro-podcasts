@@ -40,6 +40,7 @@ if (!file_exists($path)) {
 }
 
 //TODO: Determine if the image is empty and return something generic instead
+//TODO: Handle invalid images
 
 //Make image smaller so we don't crush tiny old devices
 resize_img($imgSize, $path, $path);
@@ -56,7 +57,8 @@ exit;
 //Function to resize common image formats
 //  Found on https://stackoverflow.com/questions/13596794/resize-images-with-php-support-png-jpg
 function resize_img($newWidth, $targetFile, $originalFile) {
-  if (isset($newWidth) && isset($targetFile) && isset($originalFile)) {
+  if (isset($newWidth) && isset($targetFile) && isset($originalFile) && ) {
+    
     $info = getimagesize($originalFile);
     $mime = $info['mime'];
 
