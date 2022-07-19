@@ -56,7 +56,7 @@ exit;
 //Function to resize common image formats
 //  Found on https://stackoverflow.com/questions/13596794/resize-images-with-php-support-png-jpg
 function resize_img($newWidth, $targetFile, $originalFile) {
-
+  if (isset($newWidth) && isset($targetFile) && isset($originalFile)) {
     $info = getimagesize($originalFile);
     $mime = $info['mime'];
 
@@ -94,5 +94,6 @@ function resize_img($newWidth, $targetFile, $originalFile) {
             unlink($targetFile);
     }
     $image_save_func($tmp, $targetFile);
+  }
 }
 ?>
