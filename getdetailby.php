@@ -14,7 +14,7 @@ if (isset($_GET['url'])) {
 			$url = $url[0];
 			$url = base64url_decode($url);
 		}
-		//http://podcasts.webosarchive.com/tiny.php?url=aHR0cHM6Ly9mZWVkcy5tZWdhcGhvbmUuZm0vc3R1ZmZ5b3VzaG91bGRrbm93&max=25
+		//http://podcasts.webosarchive.org/tiny.php?url=aHR0cHM6Ly9mZWVkcy5tZWdhcGhvbmUuZm0vc3R1ZmZ5b3VzaG91bGRrbm93&max=25
 	}
 	$the_query = "byfeedurl?url=" . $url;
 } 
